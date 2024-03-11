@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRCNN Super-Resolution</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://www.analyticsinsight.net/wp-content/uploads/2019/10/Computer-vision-in-healthcare.jpg'); /* Replace 'your-background-image-url.jpg' with the URL of your background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .upload-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .upload-btn {
+            background-color: #16486c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease-in-out;
+            margin-top: 20px;
+            margin-left: 50px;
+            width: 50%;
+        }
+
+        .upload-btn:hover {
+            background-color: #69b3de;
+        }
+
+        .upload-btn:focus {
+            outline: none;
+        }
+
+        .file-label {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .file-name {
+            margin-top: 5px;
+        }
+
+        .upload-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <h1>Upload Image for Super-Resolution</h1>
+    
+    <div class="upload-form">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label class="upload-btn" for="file-upload">
+                <img class="upload-icon" src="https://tse2.mm.bing.net/th?id=OIP.9ssX6RkI91daG4N8hFnHGgHaHa&pid=Api&P=0&h=180" alt="Upload Icon"> Choose File
+            </label>
+            <input id="file-upload" type="file" name="file" accept="image/*" required>
+            <span class="file-label">Click to choose an image</span>
+            <span class="file-name"></span>
+            <button class="upload-btn" type="submit">Upload</button>
+        </form>
+    </div>
+
+    <script>
+        // Display selected file name
+        const fileUpload = document.getElementById('file-upload');
+        const fileLabel = document.querySelector('.file-label');
+        const fileName = document.querySelector('.file-name');
+
+        fileUpload.addEventListener('change', () => {
+            const files = fileUpload.files;
+            if (files.length > 0) {
+                fileName.textContent = files[0].name;
+            } else {
+                fileName.textContent = '';
+            }
+        });
+    </script>
+</body>
+</html>

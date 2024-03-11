@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image: url('https://cdn.wallpapersafari.com/8/62/5G7fu0.png'); /* Replace 'your-image-path.jpg' with the path to your image */
+            background-size: cover; /* Ensure the background image covers the entire body */
+            background-repeat: no-repeat; /* Prevent the background image from repeating */
+            background-position: center; /* Center the background image */
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .result-box {
+            margin-top: 20px;
+            max-width: 400px; /* Adjust the max-width as needed */
+            background-color: #AED6F1;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .result-box p {
+            margin: 10px 0;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .image-container div {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Result for {{ filename }}</h1>
+    <h2>Scores:</h2>
+    <div class="result-box">
+        <p>PSNR: {{ scores[0] }}</p>
+        <p>MSE: {{ scores[1] }}</p>
+        <p>SSIM: {{ scores[2] }}</p>
+    </div>
+    
+    <div class="image-container">
+        <div>
+            <h2>Super Resolved Image</h2>
+            <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Original">
+        </div>
+        <div>
+            <h2>Original Image</h2>
+            <img src="data:image/jpeg;base64,{{ super_resolved }}" alt="Super Resolved Image">
+        </div>
+    </div>
+</body>
+</html>
